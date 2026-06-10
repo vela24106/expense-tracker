@@ -39,8 +39,9 @@ def del_expense():
 def save_expense():
     # try:
      with open("expense.txt","w")as f:
+        # save = view_expense(expense)
          for i in expense:
-            #f.write(str(view_expense(expense)))
+            #f.write(str(save))
             f.write("date : " + str(i["date"]) + "\n")
             f.write("catagory : " + str(i["catagory"]) + "\n")
             f.write("amount : " + str(i["amount"]) + "\n")
@@ -56,7 +57,16 @@ def load_expense():
 
     print("loaded !!!")
 
-
+def edit_expense():
+    
+    num=int(input("enter the edit expense namber :"))
+    index = num - 1
+    if 0 <= index < len(expense):
+            print(expense[index])
+            new_category = input("enter the new category :")
+            new_amount = int(input("enter the new amount :"))
+            expense[index]["catagory"] = new_category
+            expense[index]["amount"] = new_amount
 
 while True:
         print("1. Add Expense")
@@ -65,7 +75,8 @@ while True:
         print("4. Delete Expense")
         print("5. Save Expense")
         print("6. Load_Expense")
-        print("7. Exit")
+        print("7. Edit Exepense")
+        print("8. Exit")
         try:
             choice = int(input("enter the choice :"))
         except ValueError:
@@ -93,8 +104,11 @@ while True:
                 save_expense()
 
             case 6:
-                load_expense()
+                print("loed expense is on going process not completed come later !!")
+
             case 7:
+                edit_expense()
+            case 8:
                 break
             case _:
                 print ("------invalid choice------")
